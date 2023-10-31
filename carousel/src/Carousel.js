@@ -4,14 +4,14 @@ import Card from "./Card";
 
 
 /** Carousel: displays images and arrows to navigate through them
- * 
+ *
  * Props:
  * - photos: array of {src, caption} objects
  * - title: string describing the collection of images
- * 
+ *
  * State:
  * - currCardIdx: integer for current card index
- * 
+ *
  * App --> Carousel --> Card
  */
  function Carousel({ photos, title }) {
@@ -22,7 +22,12 @@ import Card from "./Card";
 
   //Increments currCardIdx state by 1
   function goForward() {
+    // check if currCard == length, go back to 0?
     setCurrCardIdx(currCardIdx + 1);
+  }
+
+  function goBackwards() {
+    setCurrCardIdx(currCardIdx === 0 ? total - 1 : currCardIdx + 1);
   }
 
   return (
