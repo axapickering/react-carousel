@@ -20,14 +20,14 @@ import Card from "./Card";
   const currCard = photos[currCardIdx];
   const total = photos.length;
 
-  //Increments currCardIdx state by 1
+  // Increments currCardIdx state by 1
   function goForward() {
-    // check if currCard == length, go back to 0?
-    setCurrCardIdx(currCardIdx + 1);
+    setCurrCardIdx(currCardIdx === total - 1 ? 0 : currCardIdx + 1);
   }
 
+  // Decrements currCardIdx state by 1. Wraps to end if 0
   function goBackwards() {
-    setCurrCardIdx(currCardIdx === 0 ? total - 1 : currCardIdx + 1);
+    setCurrCardIdx(currCardIdx === 0 ? total - 1 : currCardIdx - 1);
   }
 
   return (
@@ -35,8 +35,8 @@ import Card from "./Card";
       <h1>{title}</h1>
       <div className="Carousel-main">
         <i
-          className="bi bi-arrow-left-circle"
-          onClick={goForward}
+          className={"bi bi-arrow-left-circle" + (currCardIdx === 0 ? " invisible": "")}
+          onClick={goBackwards}
         />
         <Card
           caption={currCard.caption}
@@ -45,7 +45,7 @@ import Card from "./Card";
           totalNum={total}
         />
         <i
-          className="bi bi-arrow-right-circle"
+          className={"bi bi-arrow-right-circle" + (currCardIdx === total - 1 ? " invisible": "")}
           onClick={goForward}
         />
       </div>
